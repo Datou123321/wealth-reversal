@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>财富逆袭 · BSC 私募</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050505;color:#f5efe4;font-family:Arial,"Microsoft YaHei",sans-serif}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% -10%,#4b3515 0,transparent 38%);pointer-events:none}
+.wrap{max-width:1120px;margin:auto;padding:0 18px}
+header{height:74px;border-bottom:1px solid #2d261a;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}.mark{width:42px;height:42px;border:1px solid #c99b45;border-radius:50%;display:grid;place-items:center;color:#e5bd69;font-size:20px;font-weight:900;background:linear-gradient(145deg,#30230e,#090909);box-shadow:0 0 30px #b47c2228}.logo b{font-size:18px}.logo small{display:block;color:#847867;letter-spacing:2px;font-size:8px;margin-top:3px}
+.wallet{border:1px solid #87662b;background:#171108;color:#e7c777;border-radius:10px;padding:11px 17px;font-weight:bold;cursor:pointer}
+.hero{text-align:center;padding:90px 0 55px}.tag{color:#c49b50;letter-spacing:5px;font-size:11px}.hero h1{font-size:clamp(58px,12vw,116px);margin:15px 0 5px;line-height:.9;letter-spacing:-5px;background:linear-gradient(#fff1c4,#b9842e);-webkit-background-clip:text;color:transparent}.hero p{color:#a69b8c;font-size:18px}.cta{margin-top:28px;padding:16px 48px;border:0;border-radius:12px;background:linear-gradient(135deg,#f0cb75,#a77528);font-weight:900;font-size:16px;cursor:pointer;box-shadow:0 12px 35px #bd892d30}.risk{font-size:11px;color:#70685e;max-width:650px;margin:22px auto;line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #2b251b;border-radius:18px;background:#0d0c09;overflow:hidden}.stat{padding:22px;border-right:1px solid #2b251b}.stat:last-child{border:0}.stat span{display:block;color:#756d61;font-size:11px}.stat strong{display:block;margin-top:8px;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.card{background:linear-gradient(145deg,#13110d,#090909);border:1px solid #2d271d;border-radius:18px;padding:25px}.card h2{margin:0 0 20px;font-size:18px}.row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #211d17}.muted{color:#7c7367;font-size:12px}.input{width:100%;background:#070707;border:1px solid #393025;border-radius:10px;color:white;padding:15px;margin:8px 0 13px;outline:none}.full{width:100%}.addr{color:#d8b869;font-family:monospace}
+footer{display:flex;justify-content:space-between;color:#5e584f;font-size:11px;padding:45px 0 35px}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid #2b251b}.grid{grid-template-columns:1fr}.hero{padding-top:65px}.hero h1{letter-spacing:-3px}header .wallet{padding:9px 12px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="logo"><div class="mark">逆</div><div><b>财富逆袭</b><small>BSC PRIVATE SALE</small></div></div>
+<button class="wallet" onclick="connect()">连接钱包</button>
+</header>
+
+<section class="hero">
+<div class="tag">BSC · PRIVATE SALE</div>
+<h1>财富逆袭</h1>
+<p>连接钱包 · 查看私募资格 · 参与 BSC 链上计划</p>
+<button class="cta" onclick="connect()">连接钱包</button>
+<div class="risk">⚠ 链上资产具有风险。参与前请自行核验项目方、合约地址、审计信息及交易规则。本站不会索取助记词、私钥或钱包密码。</div>
+</section>
+
+<section class="stats">
+<div class="stat"><span>网络</span><strong>BNB Smart Chain</strong></div>
+<div class="stat"><span>私募状态</span><strong>开放中</strong></div>
+<div class="stat"><span>已募集</span><strong>待配置</strong></div>
+<div class="stat"><span>进度</span><strong>待配置</strong></div>
+</section>
+
+<div class="grid">
+<div class="card">
+<h2>我的钱包</h2>
+<div class="row"><span class="muted">连接状态</span><b id="status">未连接</b></div>
+<div class="row"><span class="muted">钱包地址</span><b id="address" class="addr">—</b></div>
+<div class="row"><span class="muted">BNB 余额</span><b id="balance">—</b></div>
+</div>
+
+<div class="card">
+<h2>参与私募</h2>
+<span class="muted">参与金额（BNB）</span>
+<input class="input" id="amount" placeholder="0.00" inputmode="decimal">
+<button class="cta full" onclick="participate()">立即参与</button>
+<p class="muted">正式交易前请配置经过核验的私募合约；交易由用户钱包自行确认。</p>
+</div>
+</div>
+
+<div class="card" style="margin-top:18px">
+<h2>项目与合约信息</h2>
+<div class="row"><span class="muted">BSC Chain ID</span><b>56</b></div>
+<div class="row"><span class="muted">私募合约</span><b>待配置</b></div>
+<div class="row"><span class="muted">代币合约</span><b>待配置</b></div>
+<div class="row"><span class="muted">审计报告</span><b>待配置</b></div>
+</div>
+
+<footer><span>财富逆袭 · Web3 Private Sale</span><span>DYOR · 非投资建议</span></footer>
+</div>
+<script>
+async function connect(){
+ if(!window.ethereum){alert("请使用支持 EVM 的 Web3 钱包浏览器打开此网站。");return}
+ try{
+  const accounts=await window.ethereum.request({method:"eth_requestAccounts"});
+  const a=accounts[0];
+  document.getElementById("status").textContent="已连接";
+  document.getElementById("address").textContent=a.slice(0,8)+"..."+a.slice(-6);
+  const chain=await window.ethereum.request({method:"eth_chainId"});
+  if(parseInt(chain,16)!==56){
+   try{await window.ethereum.request({method:"wallet_switchEthereumChain",params:[{chainId:"0x38"}]})}
+   catch(e){alert("请在钱包中切换到 BNB Smart Chain。")}
+  }
+  const bal=await window.ethereum.request({method:"eth_getBalance",params:[a,"latest"]});
+  const b=parseInt(bal,16)/1e18;
+  document.getElementById("balance").textContent=b.toFixed(5)+" BNB";
+ }catch(e){alert("钱包连接已取消。")}
+}
+function participate(){
+ if(document.getElementById("status").textContent!=="已连接"){connect();return}
+ const v=document.getElementById("amount").value;
+ if(!v || Number(v)<=0){alert("请输入参与金额。");return}
+ alert("演示页面：真实私募交易合约尚未配置，因此不会发起资金转账。");
+}
+</script>
+</body>
+</html>
